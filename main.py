@@ -11,8 +11,9 @@ def index():
 @route('/', method="post")
 def create_qr():
     data = request.forms.get("data")
+    data2 = request.forms.get("data2")
     if len(data) == 0 or len(data) >= 1450:
-        return abort(400, "Length of data must be in range (0; 1450)")
+        return abort(400, "Length data must be in range (0; 1450)")
     response.headers['Content-Type'] = 'application/pdf; charset=UTF-8'
 
     qr = pyqrcode.create(data)
