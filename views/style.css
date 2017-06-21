@@ -19,7 +19,7 @@ body {
 	font-size: 12px;
 	line-height:30px;
 	color:#777;
-	background:#FFA07A;
+	background:#0CF;
 }
 
 .container {
@@ -80,10 +80,10 @@ fieldset {
 }
 
 #contact button[type="submit"] {
-	cursor:wait;
+	cursor:pointer;
 	width:100%;
 	border:none;
-	background:#FFA07A;
+	background:#0CF;
 	color:#FFF;
 	margin:0 0 5px;
 	padding:10px;
@@ -101,7 +101,7 @@ fieldset {
 
 #contact input:focus, #contact textarea:focus {
 	outline:0;
-	border:1px solid #FFA07A;
+	border:1px solid #999;
 }
 ::-webkit-input-placeholder {
  color:#888;
