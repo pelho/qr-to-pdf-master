@@ -18,7 +18,9 @@ def create_qr():
     qr = pyqrcode.create(data)
     buffer = io.BytesIO()
     qr.svg(buffer, scale=40)
-    pdfkit.from_string(str(buffer.getvalue())[2:-3], 'qr.pdf', options={'page-size': 'A4'})
+    form_data = '<h1>{}</h1>'.format(data)
+    form_data2 = '<h1>{}</h1>'.format(data2)
+    pdfkit.from_string(str(buffer.getvalue())[2:-3]+form_data+form_data2, 'qr.pdf', options={'page-size': 'A4'})
 
     return static_file('qr.pdf', root='./')
 
