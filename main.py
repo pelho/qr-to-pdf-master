@@ -10,18 +10,18 @@ def index():
 
 @route('/', method="post")
 def create_qr():
-    data = request.forms.get("data")
-    data2 = request.forms.get("data2")
+    name = request.forms.get("name")
+    surname = request.forms.get("surname")
+    data = name + ' ' + surname
     if len(data) == 0 or len(data) >= 1450:
         return abort(400, "Length data must be in range (0; 1450)")
     response.headers['Content-Type'] = 'application/pdf; charset=UTF-8'
 
     qr = pyqrcode.create(data)
     buffer = io.BytesIO()
-    qr.svg(buffer, scale=40)
-    form_data = '<h1>{}</h1>'.format(data)
-    form_data2 = '<h1>{}</h1>'.format(data2)
-    pdfkit.from_string(str(buffer.getvalue())[2:-3]+form_data+form_data2, 'qr.pdf', options={'page-size': 'A4'})
+    qr.svg(buffer, scale=20)
+    result = template('output', name=name, surname=surname, qr=str(buffer.getvalue())[2:-3])
+    pdfkit.from_string(result, 'qr.pdf', options={'page-size': 'A4'})
 
     return static_file('qr.pdf', root='./')
 
@@ -31,5 +31,5 @@ def server_css():
     return static_file('/views/style.css', root='./')
 
 
-run(host='localhost', port=8080, debug=True)
+run(host='localhost', port=8080, debug=True, reloader=True)
 
