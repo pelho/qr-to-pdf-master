@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your data and QR code</title>
+    <style>
+        .receipt {
+            border: 4px solid black;
+            width: 50%;
+            vertical-align: middle;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <%
+        from datetime import datetime
+        dtime = str(datetime.now()).split('.')[0]
+    %>
+    <div class="receipt">
+    <h1>Receipt made on {{ dtime }}</h1>
+    <h1>Name: {{ name }}</h1>
+    <h1>Surname: {{ surname }}</h1>
+    {{ !qr }}
+    </div>
+</body>
+</html>
